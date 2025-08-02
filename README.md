@@ -1,5 +1,5 @@
 ## Programador Frontend
-     
+
 ### Desafio
 
 Este desafio tem o objetivo de avaliar melhor suas skills como desenvolvedor, não
@@ -21,8 +21,8 @@ Use e abuse de seus conhecimentos e sugestões.
 
 Abaixo, você tem o link do protótipo a ser seguido ou para servir de inspiração.
 https://www.figma.com/file/bSqhBBS9LdOehdEkJ6frDz/Teste-Frontend?node-id=0%3A1
-     
-     Não se limite ao protótipo a cima. 
+
+     Não se limite ao protótipo a cima.
      Sugestões ou novas funcionalidades será um diferencial.
 
 ##
@@ -58,4 +58,4 @@ https://www.figma.com/file/bSqhBBS9LdOehdEkJ6frDz/Teste-Frontend?node-id=0%3A1
     1. Faça um fork deste repositório;
     2. Realize o teste;
     3. Adicione seu currículo na raiz do repositório;
-    4. Envie-nos o PULL-REQUEST para que seja avaliado;
+    4. Envie-nos o PULL-REQUEST para que seja avaliado;.
