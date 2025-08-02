@@ -4,7 +4,8 @@ import { routes } from './app.routes';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
+import { provideStore } from '@ngrx/store';
 
 export const appConfig: ApplicationConfig = {
-  providers: [provideRouter(routes), MatToolbarModule, MatSidenavModule, MatListModule]
+  providers: [provideRouter(routes), MatToolbarModule, MatSidenavModule, MatListModule, provideStore()]
 };
