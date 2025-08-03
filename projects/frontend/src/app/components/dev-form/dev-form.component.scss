@@ -1,0 +1,92 @@
+@use "../../../styles/variables.scss" as *;
+
+.form-card {
+  height: fit-content;
+  --mat-card-elevated-container-color: white;
+  --mat-card-elevated-container-elevation: 0 8px 16px rgba(0, 0, 0, 0.2);
+  --mat-card-elevated-container-shape: $border-radius-sm;
+}
+
+.github-button {
+  width: 100%;
+  margin-bottom: 2rem;
+  color: $color-primary;
+  border: 2px solid $color-primary;
+  background: white;
+  border-radius: $border-radius-sm;
+  padding: 12px 16px;
+  font-weight: 500;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-family: inherit;
+  outline: none;
+
+  &:hover {
+    filter: brightness(0.9);
+  }
+
+  &:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+  }
+
+  img {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+  }
+}
+
+.form-section {
+  margin-block: 2rem;
+}
+
+.form-section h3 {
+  color: #2c3e50;
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+
+.full-width {
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+textarea {
+  resize: none;
+}
+
+.register-button {
+  width: 100%;
+  background: $color-success;
+  color: $color-primary;
+  border: none;
+  border-radius: $border-radius-sm;
+  padding: 12px 16px;
+  font-weight: 500;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: inherit;
+  outline: none;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+  &:hover {
+    filter: brightness(0.9);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  }
+
+  &:active {
+    transform: translateY(1px);
+  }
+
+  &:focus {
+    box-shadow: 0 0 0 2px rgba(39, 174, 96, 0.25);
+  }
+}

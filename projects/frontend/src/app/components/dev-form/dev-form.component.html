@@ -1,0 +1,74 @@
+<mat-card class="form-card">
+
+  <mat-card-content>
+    <button class="github-button">
+      <img src="images/github-icon.svg" alt="github logo" />
+      Cadastrar com GitHub
+    </button>
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Usuário Github</mat-label>
+      <input matInput placeholder="Digite o usuário do GitHub" />
+    </mat-form-field>
+    <mat-divider></mat-divider>
+    <div class="form-section">
+
+
+
+
+       <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Avatar (URL)</mat-label>
+        <input matInput placeholder="URL da imagem de perfil" />
+        <mat-icon matSuffix>image</mat-icon>
+      </mat-form-field>
+
+
+
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Nome</mat-label>
+        <input matInput placeholder="Nome completo" />
+        <mat-icon matSuffix>person_outline</mat-icon>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Email</mat-label>
+        <input matInput type="email" placeholder="email@exemplo.com" />
+        <mat-icon matSuffix>email</mat-icon>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Cidade</mat-label>
+        <input matInput placeholder="Sua cidade" />
+        <mat-icon matSuffix>location_on</mat-icon>
+      </mat-form-field>
+    </div>
+
+
+
+    <div class="form-section">
+      <h3>PROFISSIONAL</h3>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Formação</mat-label>
+        <input matInput placeholder="Sua formação acadêmica" />
+        <mat-icon matSuffix>school</mat-icon>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Tecnologias</mat-label>
+        <textarea
+          matInput
+          placeholder="ex: HTML/CSS, Vue, Angular etc."
+          rows="3"
+        ></textarea>
+        <mat-icon matSuffix>code</mat-icon>
+      </mat-form-field>
+    </div>
+  </mat-card-content>
+
+  <mat-card-actions>
+    <button class="register-button">
+      Cadastrar
+    </button>
+  </mat-card-actions>
+</mat-card>
