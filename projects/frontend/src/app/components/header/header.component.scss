@@ -1,0 +1,148 @@
+@import "../../../styles/variables.scss";
+
+.header {
+  background: $color-primary;
+  color: $color-text-primary;
+  padding: 0 $spacing-md;
+
+  &__content {
+    @include flex-center;
+    flex-direction: column;
+    gap: $spacing-md;
+    width: 100%;
+    margin: 0 auto;
+    padding: $spacing-md 0;
+  }
+
+  &__logo {
+    @include flex-center;
+    flex-direction: column;
+    gap: $spacing-sm;
+
+    &-image {
+      height: 20px;
+      width: auto;
+    }
+
+    &-title {
+      font-size: $font-size-lg;
+      margin: 0;
+      font-weight: 500;
+
+      &--accent {
+        color: $color-secondary;
+      }
+    }
+  }
+
+  &__search {
+    @include flex-center;
+    width: 100%;
+
+    &-wrapper {
+      position: relative;
+      width: 100%;
+      height: 44px;
+    }
+
+    &-input {
+      width: 100%;
+      height: 100%;
+      padding: 0 48px 0 $spacing-md;
+      background-color: $color-bg-secondary;
+      border: 1px solid $color-border-primary;
+      border-radius: $border-radius-md;
+      color: $color-text-primary;
+      font-size: $font-size-md;
+      outline: none;
+      box-sizing: border-box;
+      @include transition;
+
+      &::placeholder {
+        color: $color-text-muted;
+      }
+
+      &:hover {
+        border-color: $color-border-hover;
+        @include box-shadow(2);
+      }
+
+      &:focus {
+        border-color: $color-border-focus;
+        box-shadow: 0 0 0 2px rgba($color-secondary, 0.3);
+      }
+    }
+
+    &-icon {
+      position: absolute;
+      right: $spacing-sm;
+      top: 50%;
+      transform: translateY(-50%);
+      color: $color-text-secondary;
+      font-size: $font-size-xl;
+      width: $font-size-xl;
+      height: $font-size-xl;
+    }
+  }
+
+  @include tablet-up {
+    padding: 0 $spacing-lg;
+
+    &__content {
+      @include flex-between;
+      flex-direction: row;
+      max-width: 768px;
+      padding: $spacing-sm 0;
+    }
+
+    &__logo {
+      flex-direction: row;
+      gap: $spacing-md;
+
+      &-image {
+        height: 22px;
+      }
+
+      &-title {
+        font-size: $font-size-xl;
+      }
+    }
+
+    &__search {
+      width: auto;
+
+      &-wrapper {
+        width: 300px;
+        height: 40px;
+      }
+
+      &-input {
+        font-size: $font-size-sm;
+      }
+    }
+  }
+
+  @include desktop-up {
+    padding: 0 $spacing-xl;
+
+    &__content {
+      max-width: 1200px;
+    }
+
+    &__logo {
+      &-image {
+        height: 25px;
+      }
+
+      &-title {
+        font-size: $font-size-xxl;
+      }
+    }
+
+    &__search {
+      &-wrapper {
+        width: 360px;
+      }
+    }
+  }
+}

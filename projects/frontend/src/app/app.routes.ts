@@ -1,7 +1,7 @@
 import { Routes } from '@angular/router';
-import { HomeComponent } from './features/home/home.component';
+import { IndexComponent } from './features/index/index.component';
 
 export const routes: Routes = [
-  { path: '', component: HomeComponent },
+  { path: '', component: IndexComponent },
   { path: '**', redirectTo: '' },
 ];
