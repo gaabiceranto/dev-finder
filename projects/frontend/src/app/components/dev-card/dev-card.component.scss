@@ -1,0 +1,127 @@
+@use "../../../styles/variables.scss" as *;
+
+.dev-card {
+  background: $color-bg-card;
+  color: $color-text-primary;
+  border-radius: $border-radius-lg;
+  @include box-shadow(1);
+  @include transition;
+  position: relative;
+  overflow: visible;
+  width: 100%;
+  min-width: 0;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+
+  &:hover {
+    @include box-shadow(2);
+    transform: translateY(-2px);
+  }
+
+  .card-header {
+    color: $color-text-primary;
+    padding: $spacing-lg $spacing-lg $spacing-md;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-xs;
+  }
+
+  .card-title {
+    font-size: $font-size-xl;
+    font-weight: 600;
+    margin: 0;
+    color: $color-text-primary;
+    line-height: 1.2;
+  }
+
+  .card-subtitle {
+    color: $color-text-secondary;
+    font-size: $font-size-sm;
+    margin: 0;
+    padding: 0;
+    line-height: 1.4;
+  }
+
+  .card-content {
+    padding: 0 $spacing-lg $spacing-lg;
+  }
+
+  .card-actions {
+    padding: $spacing-md $spacing-lg $spacing-lg;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+  }
+}
+
+.dev-avatar {
+  font-size: $font-size-xxl;
+  width: 60px;
+  height: 60px;
+  background: $color-secondary;
+  border-radius: 50%;
+  @include flex-center;
+  @include box-shadow(2);
+  position: absolute;
+  top: -15px;
+  right: $spacing-md;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tech-text {
+  margin-top: $spacing-md;
+
+  p {
+    color: $color-text-secondary;
+    font-size: $font-size-sm;
+    line-height: 1.5;
+    margin: 0;
+  }
+}
+
+.github-link {
+  color: #68d391;
+  text-decoration: none;
+  font-size: $font-size-sm;
+  font-weight: 500;
+  @include transition;
+  padding: $spacing-sm $spacing-md;
+  border-radius: $border-radius-sm;
+  background: rgba(104, 211, 145, 0.1);
+  border: 1px solid rgba(104, 211, 145, 0.2);
+
+  &:hover {
+    color: #5bbf7a;
+  }
+}
+
+@include tablet-up {
+  .dev-avatar {
+    width: 70px;
+    height: 70px;
+    font-size: $font-size-xxl;
+    top: -20px;
+  }
+
+  .tech-chips .chip {
+    font-size: $font-size-md;
+    height: 36px;
+  }
+}
+
+@include desktop-up {
+  .dev-avatar {
+    width: 80px;
+    height: 80px;
+    font-size: $font-size-xxl;
+    top: -25px;
+  }
+
+  .tech-chips .chip {
+    font-size: $font-size-md;
+    height: 40px;
+  }
+}

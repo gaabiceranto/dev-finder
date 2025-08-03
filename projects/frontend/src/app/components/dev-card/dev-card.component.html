@@ -1,0 +1,26 @@
+<div class="dev-card">
+  <div class="card-header">
+    <div class="dev-avatar">
+      {{ developer.avatar || '👨‍💻' }}
+    </div>
+    <div class="card-title">{{ developer.name }}</div>
+    <div class="card-subtitle">{{ developer.location }}</div>
+  </div>
+
+  <div class="card-content">
+    <div class="tech-text">
+      <p>{{ developer.technologies.join(', ') }}</p>
+    </div>
+  </div>
+
+  <div class="card-actions">
+    <a
+      [href]="developer.githubUrl"
+      target="_blank"
+      class="github-link"
+      *ngIf="developer.githubUrl"
+    >
+      Acessar GitHub
+    </a>
+  </div>
+</div>
