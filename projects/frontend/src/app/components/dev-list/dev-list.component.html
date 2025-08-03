@@ -1,0 +1,47 @@
+<div class="developers-panel">
+  <div class="panel-header">
+    <h2>{{ getTitle() }}</h2>
+    <div
+      class="results-info"
+      *ngIf="filteredDevelopers.length !== allDevelopers.length"
+    >
+      <mat-icon>search</mat-icon>
+      <span>{{ filteredDevelopers.length }} resultado(s) encontrado(s)</span>
+    </div>
+  </div>
+
+  <div class="developers-list" *ngIf="filteredDevelopers.length > 0">
+    <app-dev-card
+      *ngFor="let dev of filteredDevelopers"
+      [developer]="dev"
+    ></app-dev-card>
+  </div>
+
+  <mat-card
+    class="no-results"
+    *ngIf="filteredDevelopers.length === 0 && searchTerm"
+  >
+    <mat-card-content>
+      <div class="no-results-content">
+        <mat-icon>search_off</mat-icon>
+        <h3>Nenhum desenvolvedor encontrado</h3>
+        <p>
+          Tente ajustar os termos de busca ou verifique se o desenvolvedor
+          está cadastrado.
+        </p>
+      </div>
+    </mat-card-content>
+  </mat-card>
+
+  <mat-card class="empty-state" *ngIf="allDevelopers.length === 0">
+    <mat-card-content>
+      <div class="empty-state-content">
+        <mat-icon>people_outline</mat-icon>
+        <h3>Nenhum desenvolvedor cadastrado</h3>
+        <p>
+          Use o formulário ao lado para cadastrar o primeiro desenvolvedor!
+        </p>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

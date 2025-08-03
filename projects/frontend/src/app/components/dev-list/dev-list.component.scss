@@ -1,0 +1,184 @@
+@use "../../../styles/variables.scss" as *;
+
+.developers-panel {
+  flex: 1;
+  width: 100%;
+  min-width: 0;
+}
+
+.panel-header {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-sm;
+  margin-bottom: $spacing-lg;
+  padding: $spacing-md;
+  background: $color-bg-secondary;
+  border-radius: $border-radius-md;
+  @include box-shadow(1);
+
+  h2 {
+    color: $color-text-primary;
+    margin: 0;
+    font-weight: 500;
+    font-size: $font-size-xl;
+    text-align: center;
+  }
+}
+
+.results-info {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: $spacing-sm;
+  color: $color-text-secondary;
+  font-size: $font-size-sm;
+  padding: $spacing-sm;
+  background: rgba($color-primary, 0.3);
+  border-radius: $border-radius-sm;
+
+  mat-icon {
+    font-size: $font-size-md;
+    width: $font-size-md;
+    height: $font-size-md;
+  }
+}
+
+.developers-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  padding: 0 8px;
+  width: 100%;
+}
+
+.no-results,
+.empty-state {
+  text-align: center;
+  padding: $spacing-xl;
+  background: $color-bg-card;
+  border-radius: $border-radius-lg;
+  @include box-shadow(1);
+  margin: $spacing-md;
+}
+
+.no-results-content,
+.empty-state-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $spacing-md;
+}
+
+.no-results-content mat-icon,
+.empty-state-content mat-icon {
+  font-size: $font-size-xxl;
+  width: $font-size-xxl;
+  height: $font-size-xxl;
+  color: $color-text-muted;
+}
+
+.no-results-content h3,
+.empty-state-content h3 {
+  color: $color-text-secondary;
+  margin: 0;
+  font-size: $font-size-lg;
+  font-weight: 500;
+}
+
+.no-results-content p,
+.empty-state-content p {
+  color: $color-text-muted;
+  margin: 0;
+  font-size: $font-size-md;
+  line-height: 1.5;
+  max-width: 300px;
+}
+
+@media (min-width: 768px) {
+  .panel-header {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: $spacing-lg;
+    margin-bottom: $spacing-xl;
+
+    h2 {
+      font-size: $font-size-lg;
+      text-align: left;
+    }
+  }
+
+  .results-info {
+    justify-content: flex-end;
+    padding: $spacing-xs $spacing-sm;
+  }
+
+  .developers-list {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    padding: 0;
+  }
+
+  .no-results,
+  .empty-state {
+    margin: $spacing-lg;
+  }
+
+  .no-results-content mat-icon,
+  .empty-state-content mat-icon {
+    font-size: $font-size-xl;
+    width: $font-size-xl;
+    height: $font-size-xl;
+  }
+
+  .no-results-content h3,
+  .empty-state-content h3 {
+    font-size: $font-size-md;
+  }
+
+  .no-results-content p,
+  .empty-state-content p {
+    font-size: $font-size-sm;
+    max-width: 400px;
+  }
+}
+
+@media (min-width: 992px) {
+  .panel-header {
+    padding: $spacing-xl;
+    margin-bottom: $spacing-xxl;
+
+    h2 {
+      font-size: $font-size-xxl;
+    }
+  }
+
+  .developers-list {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+    padding: 0;
+  }
+
+  .no-results,
+  .empty-state {
+    margin: $spacing-xl;
+  }
+
+  .no-results-content mat-icon,
+  .empty-state-content mat-icon {
+    font-size: $font-size-xxl;
+    width: $font-size-xxl;
+    height: $font-size-xxl;
+  }
+
+  .no-results-content h3,
+  .empty-state-content h3 {
+    font-size: $font-size-lg;
+  }
+
+  .no-results-content p,
+  .empty-state-content p {
+    font-size: $font-size-md;
+    max-width: 500px;
+  }
+}
