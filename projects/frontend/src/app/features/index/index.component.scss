@@ -1,0 +1,58 @@
+@use "../../../styles/variables.scss" as *;
+
+.main-container {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-lg;
+  padding: $spacing-md;
+  min-height: calc(100vh - 64px);
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+.form-panel {
+  width: 100%;
+  order: 1;
+  border-radius: $border-radius-sm;
+}
+
+.developers-panel {
+  width: 100%;
+  order: 2;
+}
+
+@include tablet-up {
+}
+
+@include desktop-up {
+  .main-container {
+    flex-direction: row;
+    gap: $spacing-xl;
+    padding: $spacing-lg;
+    max-width: 768px;
+  }
+
+  .form-panel {
+    flex: 1;
+    max-width: 400px;
+  }
+
+  .developers-panel {
+    flex: 1;
+  }
+  .main-container {
+    max-width: 1400px;
+    padding: $spacing-xl;
+  }
+
+  .form-panel {
+    max-width: 400px;
+    flex-shrink: 0;
+  }
+
+  .developers-panel {
+    flex: 1;
+    min-width: 0;
+    overflow: visible;
+  }
+}

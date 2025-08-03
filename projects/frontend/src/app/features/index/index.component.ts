@@ -8,7 +8,7 @@ import { Developer } from '../../components/dev-card/dev-card.component';
 @Component({
   selector: 'app-index',
   standalone: true,
-  imports: [CommonModule, HeaderComponent],
+  imports: [CommonModule, HeaderComponent, DevFormComponent, DevListComponent],
   templateUrl: './index.component.html',
   styleUrls: ['./index.component.scss'],
 })
@@ -22,7 +22,7 @@ export class IndexComponent {
       location: 'Maringá - PR',
       technologies: ['Angular', 'Jquery', 'Vue'],
       githubUrl: 'https://github.com/joaosilva',
-      avatar: '👨‍💻',
+      avatar: '',
     },
     {
       id: '2',
@@ -30,7 +30,7 @@ export class IndexComponent {
       location: 'Maringá - PR',
       technologies: ['React', 'React Native', 'Vue'],
       githubUrl: 'https://github.com/mariasilva',
-      avatar: '👩‍💻',
+      avatar: '',
     },
     {
       id: '3',
@@ -38,7 +38,7 @@ export class IndexComponent {
       location: 'São Paulo - SP',
       technologies: ['Angular', 'TypeScript', 'Node.js'],
       githubUrl: 'https://github.com/pedrosantos',
-      avatar: '👨‍💻',
+      avatar: '',
     },
     {
       id: '4',
@@ -46,7 +46,7 @@ export class IndexComponent {
       location: 'Rio de Janeiro - RJ',
       technologies: ['React', 'JavaScript', 'CSS'],
       githubUrl: 'https://github.com/anacosta',
-      avatar: '👩‍💻',
+      avatar: '',
     },
   ];
 

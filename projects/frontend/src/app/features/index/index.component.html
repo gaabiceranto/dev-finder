@@ -1,1 +1,14 @@
-<app-header></app-header>
+<app-header (searchChange)="onSearchChange($event)"></app-header>
+
+<div class="main-container">
+  <div class="form-panel">
+    <app-dev-form></app-dev-form>
+  </div>
+
+  <div class="developers-panel">
+    <app-dev-list
+      [allDevelopers]="developers"
+      [searchTerm]="searchTerm"
+    ></app-dev-list>
+  </div>
+</div>
