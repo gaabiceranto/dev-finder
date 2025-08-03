@@ -9,6 +9,8 @@
           type="text"
           class="header__search-input"
           placeholder="Buscar desenvolvedores..."
+          [(ngModel)]="searchTerm"
+          (input)="onSearch()"
         />
         <mat-icon class="header__search-icon">search</mat-icon>
       </div>
