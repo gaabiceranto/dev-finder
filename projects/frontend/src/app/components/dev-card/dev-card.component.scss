@@ -3,7 +3,7 @@
 .dev-card {
   background: $color-primary;
   color: $color-text-primary;
-  border-radius: $border-radius-lg;
+  border-radius: $border-radius-sm;
   @include box-shadow(1);
   @include transition;
   position: relative;
@@ -83,7 +83,7 @@
 }
 
 .github-link {
-  color: #68d391;
+  color: $color-support;
   text-decoration: none;
   font-size: $font-size-sm;
   font-weight: 500;
