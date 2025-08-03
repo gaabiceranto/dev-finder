@@ -1,10 +1,10 @@
-@use "../../../styles/variables.scss" as *;
+@use "../../../styles/variables.scss" as vars;
 
 .main-container {
   display: flex;
   flex-direction: column;
-  gap: $spacing-lg;
-  padding: $spacing-md;
+  gap: vars.$spacing-lg;
+  padding: vars.$spacing-md;
   min-height: calc(100vh - 64px);
   max-width: 100%;
   margin: 0 auto;
@@ -13,7 +13,7 @@
 .form-panel {
   width: 100%;
   order: 1;
-  border-radius: $border-radius-sm;
+  border-radius: vars.$border-radius-sm;
 }
 
 .developers-panel {
@@ -21,14 +21,14 @@
   order: 2;
 }
 
-@include tablet-up {
+@include vars.tablet-up {
 }
 
-@include desktop-up {
+@include vars.desktop-up {
   .main-container {
     flex-direction: row;
-    gap: $spacing-xl;
-    padding: $spacing-lg;
+    gap: vars.$spacing-xl;
+    padding: vars.$spacing-lg;
     max-width: 768px;
   }
 
@@ -42,7 +42,7 @@
   }
   .main-container {
     max-width: 1400px;
-    padding: $spacing-xl;
+    padding: vars.$spacing-xl;
   }
 
   .form-panel {

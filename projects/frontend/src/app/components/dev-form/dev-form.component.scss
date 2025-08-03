@@ -1,19 +1,19 @@
-@use "../../../styles/variables.scss" as *;
+@use "../../../styles/variables.scss" as vars;
 
 .form-card {
   height: fit-content;
   --mat-card-elevated-container-color: white;
   --mat-card-elevated-container-elevation: 0 8px 16px rgba(0, 0, 0, 0.2);
-  --mat-card-elevated-container-shape: $border-radius-sm;
+  --mat-card-elevated-container-shape: vars.$border-radius-sm;
 }
 
 .github-button {
   width: 100%;
   margin-bottom: 2rem;
-  color: $color-primary;
-  border: 2px solid $color-primary;
+  color: vars.$color-primary;
+  border: 2px solid vars.$color-primary;
   background: white;
-  border-radius: $border-radius-sm;
+  border-radius: vars.$border-radius-sm;
   padding: 12px 16px;
   font-weight: 500;
   font-size: 14px;
@@ -64,10 +64,10 @@ textarea {
 
 .register-button {
   width: 100%;
-  background: $color-success;
-  color: $color-primary;
+  background: vars.$color-success;
+  color: vars.$color-primary;
   border: none;
-  border-radius: $border-radius-sm;
+  border-radius: vars.$border-radius-sm;
   padding: 12px 16px;
   font-weight: 500;
   font-size: 14px;

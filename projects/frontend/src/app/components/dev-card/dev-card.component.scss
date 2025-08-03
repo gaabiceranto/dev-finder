@@ -1,11 +1,11 @@
-@use "../../../styles/variables.scss" as *;
+@use "../../../styles/variables.scss" as vars;
 
 .dev-card {
-  background: $color-primary;
-  color: $color-text-primary;
-  border-radius: $border-radius-sm;
-  @include box-shadow(1);
-  @include transition;
+  background: vars.$color-primary;
+  color: vars.$color-text-primary;
+  border-radius: vars.$border-radius-sm;
+  @include vars.box-shadow(1);
+  @include vars.transition;
   position: relative;
   overflow: visible;
   width: 100%;
@@ -13,41 +13,41 @@
   border: 1px solid rgba(0, 0, 0, 0.1);
 
   &:hover {
-    @include box-shadow(2);
+    @include vars.box-shadow(2);
     transform: translateY(-2px);
   }
 
   .card-header {
-    color: $color-text-primary;
-    padding: $spacing-lg $spacing-lg $spacing-md;
+    color: vars.$color-text-primary;
+    padding: vars.$spacing-lg vars.$spacing-lg vars.$spacing-md;
     position: relative;
     display: flex;
     flex-direction: column;
-    gap: $spacing-xs;
+    gap: vars.$spacing-xs;
   }
 
   .card-title {
-    font-size: $font-size-xl;
+    font-size: vars.$font-size-xl;
     font-weight: 600;
     margin: 0;
-    color: $color-text-primary;
+    color: vars.$color-text-primary;
     line-height: 1.2;
   }
 
   .card-subtitle {
-    color: $color-text-secondary;
-    font-size: $font-size-sm;
+    color: vars.$color-text-secondary;
+    font-size: vars.$font-size-sm;
     margin: 0;
     padding: 0;
     line-height: 1.4;
   }
 
   .card-content {
-    padding: 0 $spacing-lg $spacing-lg;
+    padding: 0 vars.$spacing-lg vars.$spacing-lg;
   }
 
   .card-actions {
-    padding: $spacing-md $spacing-lg $spacing-lg;
+    padding: vars.$spacing-md vars.$spacing-lg vars.$spacing-lg;
     display: flex;
     justify-content: flex-start;
     align-items: center;
@@ -55,16 +55,16 @@
 }
 
 .dev-avatar {
-  font-size: $font-size-xxl;
+  font-size: vars.$font-size-xxl;
   width: 60px;
   height: 60px;
-  background: $color-primary-light;
+  background: vars.$color-primary-light;
   border-radius: 50%;
-  @include flex-center;
-  @include box-shadow(2);
+  @include vars.flex-center;
+  @include vars.box-shadow(2);
   position: absolute;
   top: -15px;
-  right: $spacing-md;
+  right: vars.$spacing-md;
   z-index: 2;
   display: flex;
   align-items: center;
@@ -72,24 +72,24 @@
 }
 
 .tech-text {
-  margin-top: $spacing-md;
+  margin-top: vars.$spacing-md;
 
   p {
-    color: $color-text-secondary;
-    font-size: $font-size-sm;
+    color: vars.$color-text-secondary;
+    font-size: vars.$font-size-sm;
     line-height: 1.5;
     margin: 0;
   }
 }
 
 .github-link {
-  color: $color-support;
+  color: vars.$color-support;
   text-decoration: none;
-  font-size: $font-size-sm;
+  font-size: vars.$font-size-sm;
   font-weight: 500;
-  @include transition;
-  padding: $spacing-sm $spacing-md;
-  border-radius: $border-radius-sm;
+  @include vars.transition;
+  padding: vars.$spacing-sm vars.$spacing-md;
+  border-radius: vars.$border-radius-sm;
   background: rgba(104, 211, 145, 0.1);
   border: 1px solid rgba(104, 211, 145, 0.2);
 
@@ -98,30 +98,30 @@
   }
 }
 
-@include tablet-up {
+@include vars.tablet-up {
   .dev-avatar {
     width: 70px;
     height: 70px;
-    font-size: $font-size-xxl;
+    font-size: vars.$font-size-xxl;
     top: -20px;
   }
 
   .tech-chips .chip {
-    font-size: $font-size-md;
+    font-size: vars.$font-size-md;
     height: 36px;
   }
 }
 
-@include desktop-up {
+@include vars.desktop-up {
   .dev-avatar {
     width: 80px;
     height: 80px;
-    font-size: $font-size-xxl;
+    font-size: vars.$font-size-xxl;
     top: -25px;
   }
 
   .tech-chips .chip {
-    font-size: $font-size-md;
+    font-size: vars.$font-size-md;
     height: 40px;
   }
 }

@@ -1,6 +1,6 @@
 @use "@angular/material" as mat;
+@use "./styles/variables.scss" as vars;
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap");
-@import "./styles/variables.scss";
 
 html {
   @include mat.theme(

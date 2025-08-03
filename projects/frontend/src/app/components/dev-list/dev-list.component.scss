@@ -1,4 +1,4 @@
-@use "../../../styles/variables.scss" as *;
+@use "../../../styles/variables.scss" as vars;
 
 .developers-panel {
   flex: 1;
@@ -9,18 +9,18 @@
 .panel-header {
   display: flex;
   flex-direction: column;
-  gap: $spacing-sm;
-  margin-bottom: $spacing-lg;
-  padding: $spacing-md;
-  background: $color-bg-secondary;
-  border-radius:$border-radius-sm;
-  @include box-shadow(1);
+  gap: vars.$spacing-sm;
+  margin-bottom: vars.$spacing-lg;
+  padding: vars.$spacing-md;
+  background: vars.$color-bg-secondary;
+  border-radius: vars.$border-radius-sm;
+  @include vars.box-shadow(1);
 
   h2 {
-    color: $color-text-primary;
+    color: vars.$color-text-primary;
     margin: 0;
     font-weight: 500;
-    font-size: $font-size-xl;
+    font-size: vars.$font-size-xl;
     text-align: center;
   }
 }
@@ -29,17 +29,17 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: $spacing-sm;
-  color: $color-text-secondary;
-  font-size: $font-size-sm;
-  padding: $spacing-sm;
-  background: rgba($color-primary, 0.3);
-  border-radius: $border-radius-sm;
+  gap: vars.$spacing-sm;
+  color: vars.$color-text-secondary;
+  font-size: vars.$font-size-sm;
+  padding: vars.$spacing-sm;
+  background: rgba(vars.$color-primary, 0.3);
+  border-radius: vars.$border-radius-sm;
 
   mat-icon {
-    font-size: $font-size-md;
-    width: $font-size-md;
-    height: $font-size-md;
+    font-size: vars.$font-size-md;
+    width: vars.$font-size-md;
+    height: vars.$font-size-md;
   }
 }
 
@@ -54,11 +54,11 @@
 .no-results,
 .empty-state {
   text-align: center;
-  padding: $spacing-xl;
-  background: $color-bg-card;
-  border-radius: $border-radius-lg;
-  @include box-shadow(1);
-  margin: $spacing-md;
+  padding: vars.$spacing-xl;
+  background: vars.$color-bg-card;
+  border-radius: vars.$border-radius-lg;
+  @include vars.box-shadow(1);
+  margin: vars.$spacing-md;
 }
 
 .no-results-content,
@@ -66,30 +66,30 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: $spacing-md;
+  gap: vars.$spacing-md;
 }
 
 .no-results-content mat-icon,
 .empty-state-content mat-icon {
-  font-size: $font-size-xxl;
-  width: $font-size-xxl;
-  height: $font-size-xxl;
-  color: $color-text-muted;
+  font-size: vars.$font-size-xxl;
+  width: vars.$font-size-xxl;
+  height: vars.$font-size-xxl;
+  color: vars.$color-text-muted;
 }
 
 .no-results-content h3,
 .empty-state-content h3 {
-  color: $color-text-secondary;
+  color: vars.$color-text-secondary;
   margin: 0;
-  font-size: $font-size-lg;
+  font-size: vars.$font-size-lg;
   font-weight: 500;
 }
 
 .no-results-content p,
 .empty-state-content p {
-  color: $color-text-muted;
+  color: vars.$color-text-muted;
   margin: 0;
-  font-size: $font-size-md;
+  font-size: vars.$font-size-md;
   line-height: 1.5;
   max-width: 300px;
 }
@@ -99,18 +99,18 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    padding: $spacing-lg;
-    margin-bottom: $spacing-xl;
+    padding: vars.$spacing-lg;
+    margin-bottom: vars.$spacing-xl;
 
     h2 {
-      font-size: $font-size-lg;
+      font-size: vars.$font-size-lg;
       text-align: left;
     }
   }
 
   .results-info {
     justify-content: flex-end;
-    padding: $spacing-xs $spacing-sm;
+    padding: vars.$spacing-xs vars.$spacing-sm;
   }
 
   .developers-list {
@@ -121,35 +121,35 @@
 
   .no-results,
   .empty-state {
-    margin: $spacing-lg;
+    margin: vars.$spacing-lg;
   }
 
   .no-results-content mat-icon,
   .empty-state-content mat-icon {
-    font-size: $font-size-xl;
-    width: $font-size-xl;
-    height: $font-size-xl;
+    font-size: vars.$font-size-xl;
+    width: vars.$font-size-xl;
+    height: vars.$font-size-xl;
   }
 
   .no-results-content h3,
   .empty-state-content h3 {
-    font-size: $font-size-md;
+    font-size: vars.$font-size-md;
   }
 
   .no-results-content p,
   .empty-state-content p {
-    font-size: $font-size-sm;
+    font-size: vars.$font-size-sm;
     max-width: 400px;
   }
 }
 
 @media (min-width: 992px) {
   .panel-header {
-    padding: $spacing-xl;
-    margin-bottom: $spacing-xxl;
+    padding: vars.$spacing-xl;
+    margin-bottom: vars.$spacing-xxl;
 
     h2 {
-      font-size: $font-size-xxl;
+      font-size: vars.$font-size-xxl;
     }
   }
 
@@ -161,24 +161,24 @@
 
   .no-results,
   .empty-state {
-    margin: $spacing-xl;
+    margin: vars.$spacing-xl;
   }
 
   .no-results-content mat-icon,
   .empty-state-content mat-icon {
-    font-size: $font-size-xxl;
-    width: $font-size-xxl;
-    height: $font-size-xxl;
+    font-size: vars.$font-size-xxl;
+    width: vars.$font-size-xxl;
+    height: vars.$font-size-xxl;
   }
 
   .no-results-content h3,
   .empty-state-content h3 {
-    font-size: $font-size-lg;
+    font-size: vars.$font-size-lg;
   }
 
   .no-results-content p,
   .empty-state-content p {
-    font-size: $font-size-md;
+    font-size: vars.$font-size-md;
     max-width: 500px;
   }
 }
