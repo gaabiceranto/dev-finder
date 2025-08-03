@@ -13,7 +13,7 @@
   margin-bottom: $spacing-lg;
   padding: $spacing-md;
   background: $color-bg-secondary;
-  border-radius: $border-radius-md;
+  border-radius:$border-radius-sm;
   @include box-shadow(1);
 
   h2 {
