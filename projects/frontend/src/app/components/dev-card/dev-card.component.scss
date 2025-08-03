@@ -1,7 +1,7 @@
 @use "../../../styles/variables.scss" as *;
 
 .dev-card {
-  background: $color-bg-card;
+  background: $color-primary;
   color: $color-text-primary;
   border-radius: $border-radius-lg;
   @include box-shadow(1);
@@ -58,7 +58,7 @@
   font-size: $font-size-xxl;
   width: 60px;
   height: 60px;
-  background: $color-secondary;
+  background: $color-primary-light;
   border-radius: 50%;
   @include flex-center;
   @include box-shadow(2);
