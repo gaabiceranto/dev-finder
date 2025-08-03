@@ -1,7 +1,7 @@
 import { Routes } from '@angular/router';
+import { HomeComponent } from './features/cadastro/home.component';
 
 export const routes: Routes = [
-  { path: '', redirectTo: 'cadastro', pathMatch: 'full' },
-  { path: 'cadastro', loadChildren: () => import('./features/cadastro/cadastro.module').then(m => m.CadastroModule) },
-  { path: 'busca', loadChildren: () => import('./features/busca/busca.module').then(m => m.BuscaModule) },
+  { path: '', component: HomeComponent },
+  { path: '**', redirectTo: '' },
 ];
