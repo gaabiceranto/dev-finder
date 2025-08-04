@@ -1,20 +1,13 @@
-export interface Dev {
-  id?: string;
-  nome: string;
-  github: string;
-  habilidades: string[];
-  formacao: string;
-  cidade: string;
-}
+import { Developer } from '../../models/developer.model';
 
 export interface DevState {
-  devs: Dev[];
+  developers: Developer[];
   loading: boolean;
   error: string | null;
 }
 
 export const initialState: DevState = {
-  devs: [],
+  developers: [],
   loading: false,
   error: null,
 };
