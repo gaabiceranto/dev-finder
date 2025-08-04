@@ -1,3 +1,5 @@
+- 📄 [Currículo - Desenvolvedora Front-End](Gabriela%20Ceranto%20-%20Desenvolvedora%20Front-End%20I.pdf)
+
 # 🚀 Dev Finder
 
 Uma aplicação Angular para cadastro e busca de desenvolvedores com suas habilidades.
@@ -99,11 +101,9 @@ O projeto está configurado para deploy automático no GitHub Pages com:
 - Base href configurado
 - Scripts de deploy automatizados
 
-
-
 ## 👨‍💻 Autora
 
 **Gabriela Ceranto**
 
 - GitHub: [@gaabiceranto](https://github.com/gaabiceranto)
-
+- 📄 [Currículo - Desenvolvedora Front-End I](Gabriela%20Ceranto%20-%20Desenvolvedora%20Front-End%20I.pdf)
