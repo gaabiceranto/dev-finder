@@ -31,4 +31,20 @@ export class DeveloperService {
   loadDevelopers(): void {
     this.store.dispatch(DevActions.loadDevs());
   }
+
+  deleteDeveloper(id: string): Observable<void> {
+    this.store.dispatch(DevActions.deleteDev(id));
+    return new Observable((observer) => {
+      setTimeout(() => {
+        this.store.dispatch(DevActions.deleteDevSuccess(id));
+        observer.next();
+        observer.complete();
+      }, 100);
+    });
+  }
+
+  updateDeveloper(developer: Developer): void {
+    this.store.dispatch(DevActions.updateDev(developer));
+    this.store.dispatch(DevActions.updateDevSuccess(developer));
+  }
 }

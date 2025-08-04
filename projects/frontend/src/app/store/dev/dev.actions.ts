@@ -22,3 +22,27 @@ export const addDevFailure = createAction(
   '[Dev] Add Dev Failure',
   (error: string) => ({ error })
 );
+
+export const deleteDev = createAction('[Dev] Delete Dev', (id: string) => ({
+  id,
+}));
+export const deleteDevSuccess = createAction(
+  '[Dev] Delete Dev Success',
+  (id: string) => ({ id })
+);
+export const deleteDevFailure = createAction(
+  '[Dev] Delete Dev Failure',
+  (error: string) => ({ error })
+);
+
+export const updateDev = createAction('[Dev] Update Dev', (dev: Developer) => ({
+  dev,
+}));
+export const updateDevSuccess = createAction(
+  '[Dev] Update Dev Success',
+  (dev: Developer) => ({ dev })
+);
+export const updateDevFailure = createAction(
+  '[Dev] Update Dev Failure',
+  (error: string) => ({ error })
+);

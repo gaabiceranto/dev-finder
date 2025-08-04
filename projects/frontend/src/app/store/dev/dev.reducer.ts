@@ -26,5 +26,31 @@ export const devReducer = createReducer(
     ...state,
     loading: false,
     error,
+  })),
+
+  on(DevActions.deleteDev, (state) => ({ ...state, loading: true })),
+  on(DevActions.deleteDevSuccess, (state, { id }) => ({
+    ...state,
+    loading: false,
+    developers: state.developers.filter((dev) => dev.id !== id),
+  })),
+  on(DevActions.deleteDevFailure, (state, { error }) => ({
+    ...state,
+    loading: false,
+    error,
+  })),
+
+  on(DevActions.updateDev, (state) => ({ ...state, loading: true })),
+  on(DevActions.updateDevSuccess, (state, { dev }) => ({
+    ...state,
+    loading: false,
+    developers: state.developers.map((developer) =>
+      developer.id === dev.id ? dev : developer
+    ),
+  })),
+  on(DevActions.updateDevFailure, (state, { error }) => ({
+    ...state,
+    loading: false,
+    error,
   }))
 );
