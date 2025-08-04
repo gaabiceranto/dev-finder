@@ -86,8 +86,7 @@ export class FirebaseAuthService {
     let githubUsername = '';
 
     if (profile) {
-      githubUsername =
-        profile.screenName || profile.login || result.user.displayName || '';
+      githubUsername = profile.screenName || profile.login || '';
 
       if (githubUsername) {
         githubProfileUrl = `https://github.com/${githubUsername}`;
@@ -121,11 +120,8 @@ export class FirebaseAuthService {
         let githubProfileUrl = '';
 
         if (githubProvider) {
-          githubUsername =
-            (githubProvider as any).screenName ||
-            user.displayName ||
-            this.extractUsernameFromEmail(user.email) ||
-            '';
+          const githubUid = githubProvider.uid;
+          githubUsername = githubUid || '';
 
           if (githubUsername) {
             githubProfileUrl = `https://github.com/${githubUsername}`;
@@ -143,6 +139,16 @@ export class FirebaseAuthService {
         };
       })
     );
+  }
+
+  private extractUsernameFromPhotoURL(photoURL: string | null): string {
+    if (!photoURL) return '';
+    const match = photoURL.match(/githubusercontent\.com\/u\/(\d+)/);
+    if (match) {
+      return '';
+    }
+
+    return '';
   }
 
   private extractUsernameFromEmail(email: string | null): string {
