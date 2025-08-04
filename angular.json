@@ -63,7 +63,13 @@
                 }
               ],
               "outputHashing": "all",
-              "baseHref": "/dev-finder/"
+              "baseHref": "/dev-finder/",
+              "fileReplacements": [
+                {
+                  "replace": "projects/frontend/src/environments/environment.ts",
+                  "with": "projects/frontend/src/environments/environment.prod.ts"
+                }
+              ]
             },
             "development": {
               "optimization": false,
