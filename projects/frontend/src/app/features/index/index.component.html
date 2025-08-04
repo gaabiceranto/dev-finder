@@ -6,8 +6,13 @@
   </div>
 
   <div class="developers-panel">
+    <div *ngIf="loading" class="loading">
+      <p>Carregando desenvolvedores...</p>
+    </div>
+
     <app-dev-list
-      [allDevelopers]="developers"
+      *ngIf="!loading"
+      [allDevelopers]="filteredDevelopers"
       [searchTerm]="searchTerm"
     ></app-dev-list>
   </div>

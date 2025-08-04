@@ -1,9 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Subject, takeUntil } from 'rxjs';
 import { HeaderComponent } from '../../components/header/header.component';
 import { DevFormComponent } from '../../components/dev-form/dev-form.component';
 import { DevListComponent } from '../../components/dev-list/dev-list.component';
-import { Developer } from '../../components/dev-card/dev-card.component';
+import { Developer } from '../../models/developer.model';
+import { DeveloperService } from '../../services/developer.service';
 
 @Component({
   selector: 'app-index',
@@ -12,45 +14,57 @@ import { Developer } from '../../components/dev-card/dev-card.component';
   templateUrl: './index.component.html',
   styleUrls: ['./index.component.scss'],
 })
-export class IndexComponent {
+export class IndexComponent implements OnInit, OnDestroy {
   searchTerm: string = '';
+  developers: Developer[] = [];
+  loading = false;
+  private destroy$ = new Subject<void>();
 
-  developers: Developer[] = [
-    {
-      id: '1',
-      name: 'João da Silva',
-      location: 'Maringá - PR',
-      technologies: ['Angular', 'Jquery', 'Vue'],
-      githubUrl: 'https://github.com/joaosilva',
-      avatar: '',
-    },
-    {
-      id: '2',
-      name: 'Maria da Silva',
-      location: 'Maringá - PR',
-      technologies: ['React', 'React Native', 'Vue'],
-      githubUrl: 'https://github.com/mariasilva',
-      avatar: '',
-    },
-    {
-      id: '3',
-      name: 'Pedro Santos',
-      location: 'São Paulo - SP',
-      technologies: ['Angular', 'TypeScript', 'Node.js'],
-      githubUrl: 'https://github.com/pedrosantos',
-      avatar: '',
-    },
-    {
-      id: '4',
-      name: 'Ana Costa',
-      location: 'Rio de Janeiro - RJ',
-      technologies: ['React', 'JavaScript', 'CSS'],
-      githubUrl: 'https://github.com/anacosta',
-      avatar: '',
-    },
-  ];
+  constructor(private developerService: DeveloperService) {}
+
+  ngOnInit(): void {
+    this.loadDevelopers();
+  }
+
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
+  }
+
+  private loadDevelopers(): void {
+    this.developerService
+      .getDevelopers()
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((developers) => {
+        this.developers = developers;
+      });
+
+    this.developerService
+      .getLoading()
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((loading) => {
+        this.loading = loading;
+      });
+  }
 
   onSearchChange(term: string) {
     this.searchTerm = term;
+  }
+
+  get filteredDevelopers(): Developer[] {
+    if (!this.searchTerm.trim()) {
+      return this.developers;
+    }
+
+    const searchLower = this.searchTerm.toLowerCase();
+    return this.developers.filter(
+      (dev) =>
+        dev.name.toLowerCase().includes(searchLower) ||
+        dev.city.toLowerCase().includes(searchLower) ||
+        dev.technologies.some((tech) =>
+          tech.toLowerCase().includes(searchLower)
+        ) ||
+        dev.education.toLowerCase().includes(searchLower)
+    );
   }
 }
