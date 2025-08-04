@@ -6,6 +6,7 @@ import { DevFormComponent } from '../../components/dev-form/dev-form.component';
 import { DevListComponent } from '../../components/dev-list/dev-list.component';
 import { Developer } from '../../models/developer.model';
 import { DeveloperService } from '../../services/developer.service';
+import { DeveloperEditService } from '../../services/developer-edit.service';
 
 @Component({
   selector: 'app-index',
@@ -21,7 +22,10 @@ export class IndexComponent implements OnInit, OnDestroy {
   private destroy$ = new Subject<void>();
   private searchSubject$ = new Subject<string>();
 
-  constructor(private developerService: DeveloperService) {}
+  constructor(
+    private developerService: DeveloperService,
+    private developerEditService: DeveloperEditService
+  ) {}
 
   ngOnInit(): void {
     this.loadDevelopers();
@@ -54,13 +58,44 @@ export class IndexComponent implements OnInit, OnDestroy {
     this.searchSubject$.next(term);
   }
 
+  onEditDeveloper(developer: Developer): void {
+    this.developerEditService.setEditingDeveloper(developer);
+    this.scrollToForm();
+  }
+
+  onDeleteDeveloper(developer: Developer): void {
+    if (!developer.id) {
+      alert('Erro: ID do desenvolvedor não encontrado');
+      return;
+    }
+
+    if (
+      confirm(
+        `Tem certeza que deseja excluir o desenvolvedor "${developer.name}"?`
+      )
+    ) {
+      this.developerService.deleteDeveloper(developer.id).subscribe({
+        next: () => {
+          console.log('Desenvolvedor excluído com sucesso');
+        },
+        error: (error: any) => {
+          console.error('Erro ao excluir desenvolvedor:', error);
+          alert('Erro ao excluir desenvolvedor. Tente novamente.');
+        },
+      });
+    }
+  }
+
+  private scrollToForm(): void {
+    const formElement = document.querySelector('.form-panel');
+    if (formElement) {
+      formElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }
+
   private setupSearchDebounce(): void {
     this.searchSubject$
-      .pipe(
-        debounceTime(700),
-        distinctUntilChanged(),
-        takeUntil(this.destroy$)
-      )
+      .pipe(debounceTime(700), distinctUntilChanged(), takeUntil(this.destroy$))
       .subscribe((term) => {
         this.searchTerm = term;
       });
