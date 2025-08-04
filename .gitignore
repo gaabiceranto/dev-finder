@@ -45,21 +45,9 @@ testem.log
 .DS_Store
 Thumbs.db
 
-# Environment variables - NUNCA commitar!
-.env
-.env.local
-.env.development
-.env.production
-.env.test
 
-# Backend environment
-backend/.env
-backend/.env.local
-backend/.env.development
-backend/.env.production
-backend/.env.test
 
-# Firebase configuration - NUNCA commitar!
+
 projects/frontend/src/app/config/firebase.config.ts
 
 # Logs
