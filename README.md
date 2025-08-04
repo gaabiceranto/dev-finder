@@ -1,4 +1,4 @@
-- 📄 [Currículo - Desenvolvedora Front-End](Gabriela%20Ceranto%20-%20Desenvolvedora%20Front-End%20I.pdf)
+- 📄 [Currículo - Desenvolvedora Front-End](currículo%20-%20Gabriela%20Ceranto%20-%20Desenvolvedora%20Front-End%20GH.pdf)
 
 # 🚀 Dev Finder
 
@@ -106,4 +106,4 @@ O projeto está configurado para deploy automático no GitHub Pages com:
 **Gabriela Ceranto**
 
 - GitHub: [@gaabiceranto](https://github.com/gaabiceranto)
-- 📄 [Currículo - Desenvolvedora Front-End I](Gabriela%20Ceranto%20-%20Desenvolvedora%20Front-End%20I.pdf)
+- 📄 [Currículo - Desenvolvedora Front-End](currículo%20-%20Gabriela%20Ceranto%20-%20Desenvolvedora%20Front-End%20GH.pdf)
