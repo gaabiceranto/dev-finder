@@ -2,16 +2,29 @@
 
   <mat-card-content>
     <form [formGroup]="developerForm" (ngSubmit)="onSubmit()">
-      <button type="button" class="github-button" (click)="connectWithGitHub()">
-        <img src="images/github-icon.svg" alt="github logo" />
-        Cadastrar com GitHub
-      </button>
-      <mat-form-field appearance="outline" class="full-width github-field">
-        <mat-label>Usuário Github</mat-label>
-        <input matInput placeholder="Digite o usuário do GitHub" formControlName="githubUsername" />
-      </mat-form-field>
+
+      <div class="github-section">
+        <h3>CONECTAR COM GITHUB (OPCIONAL)</h3>
+        <p class="section-description">
+          Conecte com GitHub para preenchimento automático ou preencha manualmente os campos abaixo.
+        </p>
+        <button type="button" class="github-button" (click)="connectWithGitHub()" [disabled]="isLoading">
+          <img src="images/github-icon.svg" alt="github logo" />
+          <span *ngIf="!isLoading">Conectar com GitHub</span>
+          <span *ngIf="isLoading">Conectando...</span>
+        </button>
+      </div>
+
       <mat-divider></mat-divider>
+
       <div class="form-section">
+        <h3>INFORMAÇÕES PESSOAIS</h3>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Usuário GitHub (opcional)</mat-label>
+          <input matInput placeholder="Digite o usuário do GitHub" formControlName="githubUsername" />
+          <mat-icon matSuffix>code</mat-icon>
+        </mat-form-field>
 
         <mat-form-field appearance="outline" class="full-width">
           <mat-label>Avatar (URL)</mat-label>
@@ -60,7 +73,7 @@
       </div>
 
       <mat-card-actions>
-        <button type="submit" class="register-button">
+        <button type="submit" class="register-button" [disabled]="!isFormValid">
           Cadastrar
         </button>
       </mat-card-actions>

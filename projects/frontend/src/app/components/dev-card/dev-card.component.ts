@@ -1,14 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
-export interface Developer {
-  id: string;
-  name: string;
-  location: string;
-  technologies: string[];
-  githubUrl: string;
-  avatar: string;
-}
+import { Developer } from '../../models/developer.model';
 
 @Component({
   selector: 'app-dev-card',

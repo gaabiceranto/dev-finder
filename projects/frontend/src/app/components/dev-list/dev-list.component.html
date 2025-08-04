@@ -3,23 +3,23 @@
     <h2>{{ getTitle() }}</h2>
     <div
       class="results-info"
-      *ngIf="filteredDevelopers.length !== allDevelopers.length"
+      *ngIf="searchTerm && allDevelopers.length > 0"
     >
       <mat-icon>search</mat-icon>
-      <span>{{ filteredDevelopers.length }} resultado(s) encontrado(s)</span>
+      <span>{{ allDevelopers.length }} resultado(s) encontrado(s)</span>
     </div>
   </div>
 
-  <div class="developers-list" *ngIf="filteredDevelopers.length > 0">
+  <div class="developers-list" *ngIf="allDevelopers.length > 0">
     <app-dev-card
-      *ngFor="let dev of filteredDevelopers"
+      *ngFor="let dev of allDevelopers"
       [developer]="dev"
     ></app-dev-card>
   </div>
 
   <mat-card
     class="no-results"
-    *ngIf="filteredDevelopers.length === 0 && searchTerm"
+    *ngIf="allDevelopers.length === 0 && searchTerm"
   >
     <mat-card-content>
       <div class="no-results-content">
@@ -33,7 +33,7 @@
     </mat-card-content>
   </mat-card>
 
-  <mat-card class="empty-state" *ngIf="allDevelopers.length === 0">
+  <mat-card class="empty-state" *ngIf="allDevelopers.length === 0 && !searchTerm">
     <mat-card-content>
       <div class="empty-state-content">
         <mat-icon>people_outline</mat-icon>
