@@ -14,6 +14,8 @@
       *ngIf="!loading"
       [allDevelopers]="filteredDevelopers"
       [searchTerm]="searchTerm"
+      (editDeveloper)="onEditDeveloper($event)"
+      (deleteDeveloper)="onDeleteDeveloper($event)"
     ></app-dev-list>
   </div>
 </div>
