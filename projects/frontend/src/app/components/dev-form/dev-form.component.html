@@ -21,9 +21,15 @@
         <h3>INFORMAÇÕES PESSOAIS</h3>
 
         <mat-form-field appearance="outline" class="full-width">
-          <mat-label>Usuário GitHub (opcional)</mat-label>
+          <mat-label>Usuário GitHub *</mat-label>
           <input matInput placeholder="Digite o usuário do GitHub" formControlName="githubUsername" />
           <mat-icon matSuffix>code</mat-icon>
+          <mat-error *ngIf="developerForm.get('githubUsername')?.hasError('required')">
+            Usuário GitHub é obrigatório
+          </mat-error>
+          <mat-error *ngIf="developerForm.get('githubUsername')?.hasError('minlength')">
+            Usuário GitHub deve ter pelo menos 2 caracteres
+          </mat-error>
         </mat-form-field>
 
         <mat-form-field appearance="outline" class="full-width">

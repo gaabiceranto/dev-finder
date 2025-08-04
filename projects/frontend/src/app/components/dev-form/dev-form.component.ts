@@ -58,7 +58,6 @@ export class DevFormComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.loadCurrentUser();
   }
 
   ngOnDestroy(): void {
@@ -68,7 +67,7 @@ export class DevFormComponent implements OnInit, OnDestroy {
 
   private initializeForm(): void {
     this.developerForm = this.fb.group({
-      githubUsername: [''],
+      githubUsername: ['', [Validators.required, Validators.minLength(2)]],
       avatarUrl: [''],
       name: ['', [Validators.required, Validators.minLength(2)]],
       email: ['', [Validators.required, Validators.email]],
@@ -76,18 +75,6 @@ export class DevFormComponent implements OnInit, OnDestroy {
       education: ['', [Validators.required, Validators.minLength(2)]],
       technologies: ['', [Validators.required, Validators.minLength(2)]],
     });
-  }
-
-  private loadCurrentUser(): void {
-    this.firebaseAuthService
-      .getCurrentUser()
-      .pipe(takeUntil(this.destroy$))
-      .subscribe((user) => {
-        this.currentUser = user;
-        if (user) {
-          this.populateFormFromUser(user);
-        }
-      });
   }
 
   connectWithGitHub(): void {
@@ -102,14 +89,18 @@ export class DevFormComponent implements OnInit, OnDestroy {
           });
         }
 
-        if (githubProfileUrl && !githubUsername) {
-          const usernameFromUrl = this.extractUsernameFromUrl(githubProfileUrl);
-          if (usernameFromUrl) {
-            this.developerForm.patchValue({
-              githubUsername: usernameFromUrl,
-            });
-          }
-        }
+        this.firebaseAuthService
+          .getCurrentUser()
+          .pipe(takeUntil(this.destroy$))
+          .subscribe((user) => {
+            if (user) {
+              this.developerForm.patchValue({
+                avatarUrl: user.photoURL || '',
+                name: user.displayName || '',
+                email: user.email || '',
+              });
+            }
+          });
 
         this.snackBar.open(
           'Login com GitHub realizado com sucesso!',
@@ -137,7 +128,7 @@ export class DevFormComponent implements OnInit, OnDestroy {
 
   private populateFormFromUser(user: FirebaseUser): void {
     this.developerForm.patchValue({
-      githubUsername: user.githubUsername || user.displayName || '',
+      githubUsername: user.githubUsername || '', 
       avatarUrl: user.photoURL || '',
       name: user.displayName || '',
       email: user.email || '',
