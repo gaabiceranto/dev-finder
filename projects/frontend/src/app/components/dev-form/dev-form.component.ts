@@ -21,6 +21,7 @@ import {
   FirebaseAuthService,
   FirebaseUser,
 } from '../../services/firebase-auth.service';
+import { DeveloperService } from '../../services/developer.service';
 import { Developer } from '../../models/developer.model';
 
 @Component({
@@ -49,6 +50,7 @@ export class DevFormComponent implements OnInit, OnDestroy {
   constructor(
     private fb: FormBuilder,
     private firebaseAuthService: FirebaseAuthService,
+    private developerService: DeveloperService,
     private snackBar: MatSnackBar,
     private route: ActivatedRoute
   ) {
@@ -66,8 +68,8 @@ export class DevFormComponent implements OnInit, OnDestroy {
 
   private initializeForm(): void {
     this.developerForm = this.fb.group({
-      githubUsername: ['', [Validators.required, Validators.minLength(1)]],
-      avatarUrl: ['', Validators.required],
+      githubUsername: [''],
+      avatarUrl: [''],
       name: ['', [Validators.required, Validators.minLength(2)]],
       email: ['', [Validators.required, Validators.email]],
       city: ['', [Validators.required, Validators.minLength(2)]],
@@ -93,7 +95,22 @@ export class DevFormComponent implements OnInit, OnDestroy {
 
     this.firebaseAuthService
       .signInWithGitHub()
-      .then(() => {
+      .then(({ githubProfileUrl, githubUsername }) => {
+        if (githubUsername) {
+          this.developerForm.patchValue({
+            githubUsername: githubUsername,
+          });
+        }
+
+        if (githubProfileUrl && !githubUsername) {
+          const usernameFromUrl = this.extractUsernameFromUrl(githubProfileUrl);
+          if (usernameFromUrl) {
+            this.developerForm.patchValue({
+              githubUsername: usernameFromUrl,
+            });
+          }
+        }
+
         this.snackBar.open(
           'Login com GitHub realizado com sucesso!',
           'Fechar',
@@ -113,9 +130,14 @@ export class DevFormComponent implements OnInit, OnDestroy {
       });
   }
 
+  private extractUsernameFromUrl(url: string): string {
+    const match = url.match(/github\.com\/([^\/]+)/);
+    return match ? match[1] : '';
+  }
+
   private populateFormFromUser(user: FirebaseUser): void {
     this.developerForm.patchValue({
-      githubUsername: user.displayName || '',
+      githubUsername: user.githubUsername || user.displayName || '',
       avatarUrl: user.photoURL || '',
       name: user.displayName || '',
       email: user.email || '',
@@ -125,9 +147,17 @@ export class DevFormComponent implements OnInit, OnDestroy {
   onSubmit(): void {
     if (this.developerForm.valid) {
       const formValue = this.developerForm.value;
+
+      let githubProfile = '';
+      if (formValue.githubUsername) {
+        const cleanUsername = formValue.githubUsername.replace('@', '').trim();
+        githubProfile = `https://github.com/${cleanUsername}`;
+      }
+
       const developer: Developer = {
-        githubUsername: formValue.githubUsername,
-        avatarUrl: formValue.avatarUrl,
+        id: Date.now().toString(),
+        githubUsername: formValue.githubUsername || '',
+        avatarUrl: formValue.avatarUrl || '',
         name: formValue.name,
         email: formValue.email,
         city: formValue.city,
@@ -136,14 +166,16 @@ export class DevFormComponent implements OnInit, OnDestroy {
           .split(',')
           .map((tech: string) => tech.trim()),
         bio: '',
-        githubProfile: `https://github.com/${formValue.githubUsername}`,
+        githubProfile: githubProfile,
         createdAt: new Date(),
       };
 
-      console.log('Desenvolvedor a ser cadastrado:', developer);
+      this.developerService.addDeveloper(developer);
+
       this.snackBar.open('Desenvolvedor cadastrado com sucesso!', 'Fechar', {
         duration: 3000,
       });
+
       this.developerForm.reset();
     } else {
       this.markFormGroupTouched();
