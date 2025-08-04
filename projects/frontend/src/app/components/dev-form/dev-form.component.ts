@@ -23,6 +23,7 @@ import {
 } from '../../services/firebase-auth.service';
 import { DeveloperService } from '../../services/developer.service';
 import { Developer } from '../../models/developer.model';
+import { DeveloperEditService } from '../../services/developer-edit.service';
 
 @Component({
   selector: 'app-dev-form',
@@ -45,12 +46,14 @@ export class DevFormComponent implements OnInit, OnDestroy {
   developerForm!: FormGroup;
   isLoading = false;
   currentUser: FirebaseUser | null = null;
+  isEditing = false;
   private destroy$ = new Subject<void>();
 
   constructor(
     private fb: FormBuilder,
     private firebaseAuthService: FirebaseAuthService,
     private developerService: DeveloperService,
+    private developerEditService: DeveloperEditService,
     private snackBar: MatSnackBar,
     private route: ActivatedRoute
   ) {
@@ -58,6 +61,7 @@ export class DevFormComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    this.subscribeToEditMode();
   }
 
   ngOnDestroy(): void {
@@ -128,7 +132,7 @@ export class DevFormComponent implements OnInit, OnDestroy {
 
   private populateFormFromUser(user: FirebaseUser): void {
     this.developerForm.patchValue({
-      githubUsername: user.githubUsername || '', 
+      githubUsername: user.githubUsername || '',
       avatarUrl: user.photoURL || '',
       name: user.displayName || '',
       email: user.email || '',
@@ -138,6 +142,7 @@ export class DevFormComponent implements OnInit, OnDestroy {
   onSubmit(): void {
     if (this.developerForm.valid) {
       const formValue = this.developerForm.value;
+      const editingDeveloper = this.developerEditService.getEditingDeveloper();
 
       let githubProfile = '';
       if (formValue.githubUsername) {
@@ -146,7 +151,7 @@ export class DevFormComponent implements OnInit, OnDestroy {
       }
 
       const developer: Developer = {
-        id: Date.now().toString(),
+        id: editingDeveloper?.id || Date.now().toString(),
         githubUsername: formValue.githubUsername || '',
         avatarUrl: formValue.avatarUrl || '',
         name: formValue.name,
@@ -156,16 +161,24 @@ export class DevFormComponent implements OnInit, OnDestroy {
         technologies: formValue.technologies
           .split(',')
           .map((tech: string) => tech.trim()),
-        bio: '',
+        bio: editingDeveloper?.bio || '',
         githubProfile: githubProfile,
-        createdAt: new Date(),
+        createdAt: editingDeveloper?.createdAt || new Date(),
+        updatedAt: editingDeveloper ? new Date() : undefined,
       };
 
-      this.developerService.addDeveloper(developer);
-
-      this.snackBar.open('Desenvolvedor cadastrado com sucesso!', 'Fechar', {
-        duration: 3000,
-      });
+      if (editingDeveloper) {
+        this.developerService.updateDeveloper(developer);
+        this.snackBar.open('Desenvolvedor atualizado com sucesso!', 'Fechar', {
+          duration: 3000,
+        });
+        this.developerEditService.clearEditingDeveloper();
+      } else {
+        this.developerService.addDeveloper(developer);
+        this.snackBar.open('Desenvolvedor cadastrado com sucesso!', 'Fechar', {
+          duration: 3000,
+        });
+      }
 
       this.developerForm.reset();
     } else {
@@ -193,5 +206,40 @@ export class DevFormComponent implements OnInit, OnDestroy {
 
   get isFormValid(): boolean {
     return this.developerForm.valid;
+  }
+
+  private subscribeToEditMode(): void {
+    this.developerEditService.editingDeveloper$
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((developer) => {
+        if (developer) {
+          this.isEditing = true;
+          this.populateFormForEdit(developer);
+        } else {
+          this.isEditing = false;
+          this.resetForm();
+        }
+      });
+  }
+
+  private populateFormForEdit(developer: Developer): void {
+    this.developerForm.patchValue({
+      githubUsername: developer.githubUsername,
+      avatarUrl: developer.avatarUrl,
+      name: developer.name,
+      email: developer.email,
+      city: developer.city,
+      education: developer.education,
+      technologies: developer.technologies.join(', '),
+    });
+  }
+
+  private resetForm(): void {
+    this.developerForm.reset();
+    this.initializeForm();
+  }
+
+  cancelEdit(): void {
+    this.developerEditService.clearEditingDeveloper();
   }
 }

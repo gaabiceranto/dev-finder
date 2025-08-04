@@ -80,7 +80,15 @@
 
       <mat-card-actions>
         <button type="submit" class="register-button" [disabled]="!isFormValid">
-          Cadastrar
+          {{ isEditing ? 'Atualizar' : 'Cadastrar' }}
+        </button>
+        <button
+          *ngIf="isEditing"
+          type="button"
+          class="cancel-button"
+          (click)="cancelEdit()"
+        >
+          Cancelar
         </button>
       </mat-card-actions>
     </form>

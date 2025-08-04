@@ -118,3 +118,27 @@ textarea {
     box-shadow: 0 0 0 2px rgba(39, 174, 96, 0.25);
   }
 }
+
+.cancel-button {
+  background: transparent;
+  color: vars.$color-text-secondary;
+  border: 1px solid vars.$color-text-secondary;
+  border-radius: vars.$border-radius-sm;
+  padding: 12px 16px;
+  font-weight: 500;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: inherit;
+  outline: none;
+  margin-left: vars.$spacing-md;
+
+  &:hover {
+    background: vars.$color-text-secondary;
+    color: white;
+  }
+
+  &:focus {
+    box-shadow: 0 0 0 2px rgba(108, 117, 125, 0.25);
+  }
+}
