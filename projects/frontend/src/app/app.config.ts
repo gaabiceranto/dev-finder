@@ -5,7 +5,9 @@ import { provideStore } from '@ngrx/store';
 import { devReducer } from './store/dev/dev.reducer';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideHttpClient } from '@angular/common/http';
-import { provideClientHydration } from '@angular/platform-browser';
+import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
+import { getAuth, provideAuth } from '@angular/fire/auth';
+import { firebaseConfig } from './config/firebase.config';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -13,6 +15,7 @@ export const appConfig: ApplicationConfig = {
     provideStore({ dev: devReducer }),
     provideAnimations(),
     provideHttpClient(),
-    provideClientHydration(),
+    provideFirebaseApp(() => initializeApp(firebaseConfig)),
+    provideAuth(() => getAuth()),
   ],
 };
