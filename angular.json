@@ -63,7 +63,7 @@
                 }
               ],
               "outputHashing": "all",
-              "baseHref": "/dev-finder/",
+              "baseHref": "/dev-finder/"
             },
             "development": {
               "optimization": false,

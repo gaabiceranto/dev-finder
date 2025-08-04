@@ -1,5 +1,5 @@
 import { ApplicationConfig } from '@angular/core';
-import { provideRouter } from '@angular/router';
+import { provideRouter, withHashLocation } from '@angular/router';
 import { routes } from './app.routes';
 import { provideStore } from '@ngrx/store';
 import { devReducer } from './store/dev/dev.reducer';
@@ -19,7 +19,7 @@ const firebaseConfig = {
 
 export const appConfig: ApplicationConfig = {
   providers: [
-    provideRouter(routes),
+    provideRouter(routes, withHashLocation()),
     provideStore({ dev: devReducer }),
     provideAnimations(),
     provideHttpClient(),

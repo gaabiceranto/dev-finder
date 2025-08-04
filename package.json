@@ -6,6 +6,7 @@
     "start": "ng serve",
     "build": "ng build",
     "build:github": "ng build --configuration github-pages",
+    "deploy:github": "ng build --configuration github-pages && npx angular-cli-ghpages --dir=dist/frontend/browser",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
@@ -43,6 +44,7 @@
     "@angular/compiler-cli": "^20.1.0",
     "@ngrx/schematics": "^20.0.0",
     "@types/jasmine": "~5.1.0",
+    "angular-cli-ghpages": "^2.0.3",
     "jasmine-core": "~5.8.0",
     "karma": "~6.4.0",
     "karma-chrome-launcher": "~3.2.0",
