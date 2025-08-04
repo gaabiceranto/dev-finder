@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { Developer } from '../../models/developer.model';
@@ -12,4 +12,14 @@ import { Developer } from '../../models/developer.model';
 })
 export class DevCardComponent {
   @Input() developer!: Developer;
+  @Output() edit = new EventEmitter<Developer>();
+  @Output() delete = new EventEmitter<Developer>();
+
+  onEdit(): void {
+    this.edit.emit(this.developer);
+  }
+
+  onDelete(): void {
+    this.delete.emit(this.developer);
+  }
 }

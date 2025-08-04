@@ -14,6 +14,8 @@
     <app-dev-card
       *ngFor="let dev of allDevelopers"
       [developer]="dev"
+      (edit)="onEditDeveloper($event)"
+      (delete)="onDeleteDeveloper($event)"
     ></app-dev-card>
   </div>
 

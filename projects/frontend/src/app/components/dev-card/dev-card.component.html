@@ -40,5 +40,22 @@
     >
       <mat-icon>email</mat-icon>
     </a>
+
+    <div class="action-buttons">
+      <button
+        class="action-button edit-button"
+        (click)="onEdit()"
+        title="Editar desenvolvedor"
+      >
+        <img src="/images/edit.svg" alt="Editar" />
+      </button>
+      <button
+        class="action-button delete-button"
+        (click)="onDelete()"
+        title="Excluir desenvolvedor"
+      >
+        <img src="/images/trash-2.svg" alt="Excluir" />
+      </button>
+    </div>
   </div>
 </div>
