@@ -1,4 +1,4 @@
-# See https://docs.github.com/get-started/getting-started-with-git/ignoring-files for more about ignoring files.
+# See http://help.github.com/ignore-files/ for more about ignoring files.
 
 # Compiled output
 /dist
@@ -37,6 +37,31 @@ yarn-error.log
 testem.log
 /typings
 
-# System files
+# e2e
+/e2e/*.js
+/e2e/*.map
+
+# System Files
 .DS_Store
 Thumbs.db
+
+# Environment variables - NUNCA commitar!
+.env
+.env.local
+.env.development
+.env.production
+.env.test
+
+# Backend environment
+backend/.env
+backend/.env.local
+backend/.env.development
+backend/.env.production
+backend/.env.test
+
+# Firebase configuration - NUNCA commitar!
+projects/frontend/src/app/config/firebase.config.ts
+
+# Logs
+*.log
+logs/
