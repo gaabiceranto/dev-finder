@@ -118,6 +118,32 @@
   }
 }
 
+.email-link {
+  color: vars.$color-secondary;
+  text-decoration: none;
+  @include vars.transition;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  margin-left: vars.$spacing-sm;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+
+  &:hover {
+    color: #e0e0e0;
+    background: rgba(255, 255, 255, 0.2);
+  }
+
+  mat-icon {
+    font-size: 20px;
+    width: 20px;
+    height: 20px;
+  }
+}
+
 @include vars.tablet-up {
   .dev-avatar {
     width: 70px;

@@ -28,8 +28,17 @@
       target="_blank"
       class="github-link"
       *ngIf="developer.githubProfile"
+      title="Acessar perfil no GitHub"
     >
       Acessar GitHub
+    </a>
+    <a
+      [href]="'mailto:' + developer.email"
+      class="email-link"
+      *ngIf="developer.email"
+      title="Enviar email"
+    >
+      <mat-icon>email</mat-icon>
     </a>
   </div>
 </div>
