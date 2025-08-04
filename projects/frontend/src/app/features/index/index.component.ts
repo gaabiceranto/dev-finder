@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Subject, takeUntil } from 'rxjs';
+import { Subject, takeUntil, debounceTime, distinctUntilChanged } from 'rxjs';
 import { HeaderComponent } from '../../components/header/header.component';
 import { DevFormComponent } from '../../components/dev-form/dev-form.component';
 import { DevListComponent } from '../../components/dev-list/dev-list.component';
@@ -19,16 +19,19 @@ export class IndexComponent implements OnInit, OnDestroy {
   developers: Developer[] = [];
   loading = false;
   private destroy$ = new Subject<void>();
+  private searchSubject$ = new Subject<string>();
 
   constructor(private developerService: DeveloperService) {}
 
   ngOnInit(): void {
     this.loadDevelopers();
+    this.setupSearchDebounce();
   }
 
   ngOnDestroy(): void {
     this.destroy$.next();
     this.destroy$.complete();
+    this.searchSubject$.complete();
   }
 
   private loadDevelopers(): void {
@@ -48,7 +51,19 @@ export class IndexComponent implements OnInit, OnDestroy {
   }
 
   onSearchChange(term: string) {
-    this.searchTerm = term;
+    this.searchSubject$.next(term);
+  }
+
+  private setupSearchDebounce(): void {
+    this.searchSubject$
+      .pipe(
+        debounceTime(700),
+        distinctUntilChanged(),
+        takeUntil(this.destroy$)
+      )
+      .subscribe((term) => {
+        this.searchTerm = term;
+      });
   }
 
   get filteredDevelopers(): Developer[] {

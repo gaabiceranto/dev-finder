@@ -6,7 +6,8 @@ import { devReducer } from './store/dev/dev.reducer';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideHttpClient } from '@angular/common/http';
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
-import { getAuth, provideAuth } from '@angular/fire/auth';
+import { getAuth, provideAuth, connectAuthEmulator } from '@angular/fire/auth';
+import { inMemoryPersistence, setPersistence } from '@angular/fire/auth';
 import { firebaseConfig } from './config/firebase.config';
 
 export const appConfig: ApplicationConfig = {
@@ -16,6 +17,11 @@ export const appConfig: ApplicationConfig = {
     provideAnimations(),
     provideHttpClient(),
     provideFirebaseApp(() => initializeApp(firebaseConfig)),
-    provideAuth(() => getAuth()),
+    provideAuth(() => {
+      const auth = getAuth();
+      // Configurar persistência em memória apenas (não usa localStorage)
+      setPersistence(auth, inMemoryPersistence);
+      return auth;
+    }),
   ],
 };
