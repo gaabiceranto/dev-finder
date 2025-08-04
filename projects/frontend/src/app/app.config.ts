@@ -7,7 +7,15 @@ import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideHttpClient } from '@angular/common/http';
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { getAuth, provideAuth } from '@angular/fire/auth';
-import { environment } from '../environments/environment';
+
+const firebaseConfig = {
+  apiKey: '',
+  authDomain: '',
+  projectId: '',
+  storageBucket: '',
+  messagingSenderId: '',
+  appId: '',
+};
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -15,7 +23,7 @@ export const appConfig: ApplicationConfig = {
     provideStore({ dev: devReducer }),
     provideAnimations(),
     provideHttpClient(),
-    provideFirebaseApp(() => initializeApp(environment.firebase)),
+    provideFirebaseApp(() => initializeApp(firebaseConfig)),
     provideAuth(() => getAuth()),
   ],
 };
