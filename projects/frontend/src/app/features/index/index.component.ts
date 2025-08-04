@@ -39,6 +39,8 @@ export class IndexComponent implements OnInit, OnDestroy {
   }
 
   private loadDevelopers(): void {
+    this.developerService.loadDevelopers();
+
     this.developerService
       .getDevelopers()
       .pipe(takeUntil(this.destroy$))
