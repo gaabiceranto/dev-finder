@@ -1,4 +1,4 @@
-- 📄 [Currículo - Desenvolvedora Front-End](currículo - Gabriela Ceranto - Desenvolvedora Front-End GH.pdf)
+- 📄 [Currículo - Desenvolvedora Front-End](Gabriela%20Ceranto%20-%20Desenvolvedora%20Front-End%20I.pdf)
 
 # 🚀 Dev Finder
 
